@@ -1,0 +1,14 @@
+{
+    "api": {
+        "baseUrl": "https://cd7336442031824d.mokky.dev/",
+        "endPoints": {
+            "applications": "applications",
+            "buildings": "buildings",
+            "uploads": "uploads",
+            "auth": "auth",
+            "auth_me": "auth_me",
+            "users": "users",
+            "category": "category"
+        }
+    }
+}
