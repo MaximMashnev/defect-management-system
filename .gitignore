@@ -1,4 +1,4 @@
-﻿# Root gitignore
+# Root gitignore
 node_modules/
 .vscode/
 .idea/
@@ -11,6 +11,8 @@ backend/uploads/*
 !backend/uploads/.gitkeep
 backend/.env
 backend/*.exe
+backend/*.db
+*.db
 
 # Frontend
 frontend/node_modules/

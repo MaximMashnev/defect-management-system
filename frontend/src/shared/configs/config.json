@@ -1,6 +1,6 @@
 {
     "api": {
-        "baseUrl": "https://cd7336442031824d.mokky.dev/",
+        "baseUrl": "http://localhost:8080/api/",
         "endPoints": {
             "applications": "applications",
             "buildings": "buildings",

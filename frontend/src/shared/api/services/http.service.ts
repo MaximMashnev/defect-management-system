@@ -1,10 +1,10 @@
 import axios from "axios";
-import config from "../../configs/config.json"
+import config from "../../configs/config.json";
 import { STORAGE_KEYS } from "../../consts";
 
 export const httpService = axios.create({
-    baseURL: config.api.baseUrl
-})
+    baseURL: process.env.REACT_APP_API_BASE_URL || config.api.baseUrl
+});
 
 httpService.interceptors.request.use((config) => {
     const token = localStorage.getItem(STORAGE_KEYS.TOKEN);
@@ -12,4 +12,4 @@ httpService.interceptors.request.use((config) => {
         config.headers.Authorization = `Bearer ${token}`;
     }
     return config;
-})
+});
