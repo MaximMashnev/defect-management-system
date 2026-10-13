@@ -7,7 +7,11 @@ export function linkGeneration (app: ApplicationEntity): string {
 
 export function linkDecrypting (link: string) {
     try {
-        const match = link.match(/^a(\d+)b/);
+        const trimmed = link.trim();
+        if (/^\d+$/.test(trimmed)) {
+            return Number(trimmed);
+        }
+        const match = trimmed.match(/^a(\d+)b/);
         if (match && match[1]) {
             return Number(match[1]);
         }

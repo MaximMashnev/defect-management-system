@@ -250,6 +250,9 @@ func (r *ApplicationRepository) Create(a *model.Application) (*model.Application
 		}
 	}
 
+	if a.UploadID == nil {
+		a.UploadID = []int{}
+	}
 	if len(a.UploadID) > 0 {
 		_ = r.saveUploadIDs(a.ID, a.UploadID)
 	}
@@ -282,6 +285,9 @@ func (r *ApplicationRepository) Update(a *model.Application) (*model.Application
 		}
 	}
 
+	if a.UploadID == nil {
+		a.UploadID = []int{}
+	}
 	if len(a.UploadID) > 0 {
 		_ = r.saveUploadIDs(a.ID, a.UploadID)
 	}
@@ -290,17 +296,17 @@ func (r *ApplicationRepository) Update(a *model.Application) (*model.Application
 }
 
 func (r *ApplicationRepository) getUploadIDs(appID int) []int {
+	ids := make([]int, 0)
 	query := "SELECT upload_id FROM application_uploads WHERE application_id = ?"
 	if r.db.Driver != "sqlite" {
 		query = "SELECT upload_id FROM application_uploads WHERE application_id = $1"
 	}
 	rows, err := r.db.Query(query, appID)
 	if err != nil {
-		return []int{}
+		return ids
 	}
 	defer rows.Close()
 
-	var ids []int
 	for rows.Next() {
 		var id int
 		if err := rows.Scan(&id); err == nil {

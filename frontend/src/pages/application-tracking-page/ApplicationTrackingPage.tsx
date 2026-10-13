@@ -83,7 +83,7 @@ export default function ApplicationsTrackingPage() {
            const app = await applicationsStore.getApplication(applicationId); 
             if (app) {
                 setApp(app);
-                if (app.upload_id.length > 0) {
+                if (app.upload_id && app.upload_id.length > 0) {
                     const imgs = await applicationsStore.getFiles(app.upload_id);
                     if (imgs) setImgs(imgs);
                 }
@@ -132,7 +132,7 @@ export default function ApplicationsTrackingPage() {
                             </AccordionDetails>
                         </Accordion>
                         {
-                            app.upload_id.length > 0 &&        
+                            Boolean(app.upload_id && app.upload_id.length > 0) &&        
                             <Accordion>
                                 <AccordionSummary
                                     expandIcon={<ExpandMoreIcon />}
